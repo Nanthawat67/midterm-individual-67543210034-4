@@ -34,7 +34,7 @@ src/
 
 ```
 
-🎯 Refactoring Summary
+## 🎯 Refactoring Summary
 Problems in Monolithic System
 โค้ดทั้งหมดอยู่ในไฟล์เดียว
 
@@ -60,21 +60,21 @@ Benefits
 
 รองรับการพัฒนาต่อในอนาคต
 
-🚀 How to Run
+## 🚀 How to Run
 
 ```text
 npm install
 npm start
-Server จะรันที่:
 ```
 
 
-text
 ```text
+Server จะรันที่:
+
 http://localhost:3000
 ```
 
-🧪 API Endpoints
+## 🧪 API Endpoints
 GET /api/students – ดึงข้อมูลนักศึกษาทั้งหมด
 
 GET /api/students/:id – ดึงข้อมูลนักศึกษาตามรหัส
