@@ -1,28 +1,64 @@
-🎯 Refactoring Summary
-Problems in Monolithic System
 
-โค้ดทั้งหมดอยู่ในไฟล์เดียว
+---
 
-Business Logic, Database และ HTTP ปนกัน
+### 📄 **ARCHITECTURE.md**
 
-แก้ไขยาก และเกิด conflict บ่อย
+```md
+# Architecture Design - Layered Architecture
 
-ยากต่อการดูแลและขยายระบบ
+## Overview
+ระบบ Student Management System นี้ถูกออกแบบโดยใช้  
+**Layered Architecture (3-Tier)**  
+เพื่อแก้ปัญหาของระบบแบบ Monolithic ที่โค้ดผูกกันแน่น  
+ทำให้ระบบมีความยืดหยุ่น ง่ายต่อการดูแล และง่ายต่อการขยายในอนาคต
 
-Solution with Layered Architecture
+## Architecture Diagram
+Client  
+│  
+▼  
+┌─────────────────────────────────┐  
+│ Presentation Layer │  
+│ Routes → Controllers │  
+│ (HTTP Request / Response) │  
+└───────────────┬─────────────────┘  
+│  
+▼  
+┌─────────────────────────────────┐  
+│ Business Logic Layer │  
+│ Services → Validators │  
+│ (Business Rules & Validation) │  
+└───────────────┬─────────────────┘  
+│  
+▼  
+┌─────────────────────────────────┐  
+│ Data Access Layer │  
+│ Repositories → SQLite DB │  
+│ (SQL Queries & Persistence) │  
+└───────────────┬─────────────────┘  
+▼  
+SQLite Database
 
-แยกความรับผิดชอบเป็นแต่ละ Layer
+## Layer Responsibilities
 
-แยก Business Logic และ Validation ออกจาก Controller
+### 1. Presentation Layer
+- รับ HTTP Request จาก Client
+- ส่ง HTTP Response กลับไปยัง Client
+- เรียกใช้งาน Business Layer
+- ไม่ควรมี Business Logic
 
-แยก Data Access ออกจาก Business Logic อย่างชัดเจน
+### 2. Business Logic Layer
+- จัดการกฎทางธุรกิจ
+- ตรวจสอบความถูกต้องของข้อมูล
+- ประมวลผลข้อมูลก่อนส่งไปยัง Data Layer
 
-Benefits
+### 3. Data Access Layer
+- ติดต่อฐานข้อมูล SQLite
+- จัดการ SQL Queries
+- แยกการเข้าถึงข้อมูลออกจาก Business Logic
 
-โค้ดอ่านง่ายและเป็นระเบียบ
-
-ง่ายต่อการบำรุงรักษา
-
-ลดผลกระทบเมื่อมีการแก้ไขระบบ
-
-รองรับการพัฒนาต่อในอนาคต
+## Data Flow
+1. Client ส่ง HTTP Request
+2. Presentation Layer รับ Request และเรียก Service
+3. Business Layer ตรวจสอบและประมวลผลข้อมูล
+4. Data Layer ติดต่อฐานข้อมูล
+5. ส่งผลลัพธ์กลับไปยัง Client
