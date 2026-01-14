@@ -1,0 +1,15 @@
+{
+  "name": "midterm-individual-67543210034-4",
+  "version": "1.0.0",
+  "description": "ENGSE207 Midterm Practical Exam - Layered Architecture",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^5.1.7"
+  }
+}
